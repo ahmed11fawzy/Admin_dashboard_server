@@ -10,7 +10,10 @@ import clientRoutes from "./Routes/client.js";
 import generalRoutes from "./Routes/general.js";
 import managementRoutes from "./Routes/management.js";
 import { User } from "./Models/userModel.js";
-import {dataUser} from "./data/data.js";
+import { Product } from "./Models/productModel.js";
+import { ProductStat } from "./Models/productStatModel.js";
+import { Transaction } from "./Models/transactionModel.js";
+import {dataUser, dataProduct, dataProductStat , dataTransaction } from "./data/data.js";
 
 /* Configuration */
 
@@ -32,7 +35,11 @@ connectDB().then(() =>
     console.log(`Server is running on port ${PORT}`);
     // Uncomment the line below to seed the database with initial data
     /* insert initial data one time */
-    // User.insertMany(dataUser);
+    /* User.insertMany(dataUser);
+      Product.insertMany(dataProduct);
+      ProductStat.insertMany(dataProductStat); 
+      Transaction.insertMany(dataTransaction);
+    */
     })
 ).catch((error) => {
     console.error(`Error connecting to the database: ${error.message}`);
@@ -52,7 +59,7 @@ app.use("/api/v1/mangement",managementRoutes );
 // Error handling middleware
 
 app.use((req, res, next) => {
-    res.status(404).send('Not Found');
+    res.status(404).send({ message: "not found" });
     next();
   });
   
