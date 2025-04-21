@@ -7,13 +7,15 @@ import bodyParser from "body-parser";
 import {connectDB}  from "./Config/db.js";
 import authRoutes from "./Routes/auth.js";
 import clientRoutes from "./Routes/client.js";
+import salesRoutes from "./Routes/sales.js";
 import generalRoutes from "./Routes/general.js";
 import managementRoutes from "./Routes/management.js";
 import { User } from "./Models/userModel.js";
 import { Product } from "./Models/productModel.js";
 import { ProductStat } from "./Models/productStatModel.js";
 import { Transaction } from "./Models/transactionModel.js";
-import {dataUser, dataProduct, dataProductStat , dataTransaction } from "./data/data.js";
+import {OverallStat} from "./Models/overAllStatModel.js";
+import {dataUser, dataProduct, dataProductStat , dataTransaction , dataOverallStat } from "./data/data.js";
 
 /* Configuration */
 
@@ -37,9 +39,10 @@ connectDB().then(() =>
     /* insert initial data one time */
     /* User.insertMany(dataUser);
       Product.insertMany(dataProduct);
-      ProductStat.insertMany(dataProductStat); 
       Transaction.insertMany(dataTransaction);
-    */
+      OverallStat.insertMany(dataOverallStat)
+      ProductStat.insertMany(dataProductStat); 
+      */
     })
 ).catch((error) => {
     console.error(`Error connecting to the database: ${error.message}`);
@@ -51,6 +54,7 @@ connectDB().then(() =>
 
 app.use("/api/v1/auth",authRoutes );
 app.use("/api/v1/client",clientRoutes );
+app.use("/api/v1/sales",salesRoutes );
 app.use("/api/v1/general",generalRoutes );
 app.use("/api/v1/mangement",managementRoutes );
 
