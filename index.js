@@ -15,7 +15,15 @@ import { Product } from "./Models/productModel.js";
 import { ProductStat } from "./Models/productStatModel.js";
 import { Transaction } from "./Models/transactionModel.js";
 import {OverallStat} from "./Models/overAllStatModel.js";
-import {dataUser, dataProduct, dataProductStat , dataTransaction , dataOverallStat } from "./data/data.js";
+import { AffiliateStat } from "./Models/affiliateStatModel.js";
+import {
+  dataUser,
+  dataProduct,
+  dataProductStat,
+  dataTransaction,
+  dataOverallStat,
+  dataAffiliateStat,
+} from "./data/data.js";
 
 /* Configuration */
 
@@ -42,6 +50,7 @@ connectDB().then(() =>
       Transaction.insertMany(dataTransaction);
       OverallStat.insertMany(dataOverallStat)
       ProductStat.insertMany(dataProductStat); 
+      AffiliateStat.insertMany(dataAffiliateStat);
       */
     })
 ).catch((error) => {
